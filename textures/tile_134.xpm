@@ -1,0 +1,27 @@
+/* XPM */
+static char *tile_134[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c #4E4A4E",
+". c #757161",
+"X c #854C30",
+"o c #D27D2C",
+"O c #8595A1",
+/* pixels */
+"                ",
+". .OOOOXX .OOOOO",
+"O OOOXooooXOOOOO",
+"O OOooooooooOOOO",
+"O OooooooooooOOO",
+". XooooooooooXO.",
+"  oooooooooooo  ",
+"OOoooooooooooo.O",
+"OXooooooooooooXO",
+"OooooooooooooooO",
+"OoooooooooooXooO",
+" ooooooooooXXXo ",
+"OoooooooooooXooO",
+"OooooooooooooooO",
+"OooooooooooooooO",
+"OXXXXXXXXXXXXXX."
+};

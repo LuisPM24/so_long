@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:34:40 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/12 10:56:55 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:43:04 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-//# include <mlx.h>
 # include <errno.h>
 # include "libft/libft.h"
+# include "MLX42/MLX42.h"
 
 typedef struct s_tile
 {
-	void	*tile_ptr;
-	int		tile_width;
-	int		tile_height;
+	mlx_image_t	*img;
 }		t_tile;
 
 typedef struct s_player
@@ -35,8 +33,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	void		*mlx_init;
-	void		*window;
+	void		*mlx;
 	char		**map;
 	int			map_width;
 	int			map_height;

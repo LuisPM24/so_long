@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:17:47 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/10 17:15:26 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:17:52 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,21 @@ char	**get_map(char *map_arg)
 		return (NULL);
 	fd = open(map_arg, O_RDONLY);
 	if (fd < 0)
+	{
+		free(map);
 		return (NULL);
+	}
 	line = get_next_line(fd);
+	if (!line)
+	{
+		free(map);
+		close(fd);
+		return (NULL);
+	}
 	while (line)
 	{
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		map[count] = line;
 		count++;
 		line = get_next_line(fd);
@@ -66,7 +77,7 @@ void	print_map(char **map)
 	count = 0;
 	while (map[count])
 	{
-		ft_printf("%s", map[count]);
+		ft_printf("%s\n", map[count]);
 		count++;
 	}
 }

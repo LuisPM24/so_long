@@ -6,7 +6,7 @@
 #    By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:24:08 by lpalomin          #+#    #+#              #
-#    Updated: 2025/04/15 12:56:12 by lpalomin         ###   ########.fr        #
+#    Updated: 2025/04/21 19:23:59 by lpalomin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,19 @@ SRCS = 	so_long.c \
 	map_validations.c \
 	object_validations.c \
 	map_methods.c \
-	route_validation.c
+	route_validation.c \
+	charge_textures.c \
+	load_game.c \
+	player_movements.c \
+	exit_game.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 
-MLX_DIR = /sgoinfre/shared/MLX42
+# MLX_DIR = /sgoinfre/shared/MLX42
+MLX_DIR = $(HOME)/sgoinfre/MLX42
 MLX_INC = -I$(MLX_DIR)/include
 MLX_LIB = -L$(MLX_DIR)/build -lmlx42 -lglfw -ldl -lm -lX11 -pthread
 

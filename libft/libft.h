@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:48:24 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/09 17:01:32 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/19 11:52:07 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+					void (*del)(void *));
 //Printf functions
 int				ft_printf(char const *str, ...);
 void			printf_putchar(char c, int *printed);

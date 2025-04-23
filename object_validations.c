@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:04:21 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/10 16:50:10 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:52:39 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,21 @@ void	object_validations(char **map)
 	if (validate_amount_objects(map, 'C', 0))
 	{
 		write(2, "Error\nThere are no collectables in the map.", 43);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 	else if (!validate_amount_objects(map, 'E', 1))
 	{
 		write(2, "Error\nOnly 1 exit allowed in the map.", 37);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	else if (!validate_amount_objects(map, 'P', 1))
 	{
 		write(2, "Error\nOnly 1 player allowed in the map.", 39);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	else if (!search_other_objects(map))
 	{
 		write(2, "Error\nInvalid objects in the map.", 34);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }

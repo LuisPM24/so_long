@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:53:24 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/10 17:53:33 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:10:18 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	is_rectangular(char **map)
 	if (!map || !map[0])
 		return (0);
 	width = ft_strlen(map[0]);
-	if (map[0][width - 1] == '\n')
+	if (width > 0 && map[0][width - 1] == '\n')
 		width--;
 	count = 1;
 	while (map[count])
 	{
 		len = ft_strlen(map[count]);
-		if (map[count][len - 1] == '\n')
+		if (len > 0 && map[count][len - 1] == '\n')
 			len--;
 		if (len != width)
 			return (0);
@@ -67,11 +67,11 @@ void	map_validations(char **map)
 	if (!is_rectangular(map))
 	{
 		write(2, "Error\nThe map is not rectangular.", 33);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 	else if (!is_closed(map))
 	{
 		write(2, "Error\nThe map borders are not closed.", 37);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 }

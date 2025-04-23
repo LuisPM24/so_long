@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:46:59 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/14 10:47:31 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:52:57 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	route_validation(char **map)
 	if (!verify_route(map))
 	{
 		write(2, "Error\nThere is not a valid route.", 33);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 }

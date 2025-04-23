@@ -6,7 +6,7 @@
 /*   By: lpalomin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:08:18 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 10:58:43 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:54:07 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,29 @@ static void	init_game(t_game *game, char **map)
 	}
 }
 
-static void	tile_selector(t_game *game, char tile, int row, int col)
+static void	collect_select(t_game *game, int row, int col)
 {
 	mlx_image_t	*img;
 
+	img = mlx_texture_to_image(game->mlx, game->tile_collect.texture);
+	if (!img)
+	{
+		write(2, "Error\nFailed to create collectible image\n", 42);
+		exit(EXIT_FAILURE);
+	}
+	mlx_image_to_window(game->mlx, img, col * 16, row * 16);
+	game->collect[game->collect_amount].x = col;
+	game->collect[game->collect_amount].y = row;
+	game->collect[game->collect_amount].img = img;
+	game->collect_amount++;
+}
+
+static void	tile_selector(t_game *game, char tile, int row, int col)
+{
 	if (tile == '1')
 		mlx_image_to_window(game->mlx, game->tile_wall.img, col * 16, row * 16);
 	else if (tile == 'C')
-	{
-		img = mlx_texture_to_image(game->mlx, game->tile_collect.texture);
-		if (!img)
-		{
-			write(2, "Error\nFailed to create collectible image\n", 42);
-			exit(EXIT_FAILURE);
-		}
-		mlx_image_to_window(game->mlx, img, col * 16, row * 16);
-		game->collect[game->collect_amount].x = col;
-		game->collect[game->collect_amount].y = row;
-		game->collect[game->collect_amount].img = img;
-		game->collect_amount++;
-	}
+		collect_select(game, row, col);
 	else if (tile == 'E')
 		mlx_image_to_window(game->mlx, game->tile_exit.img, col * 16, row * 16);
 	else if (tile == 'P')
@@ -103,8 +106,8 @@ void	start_game(char **map)
 	init_game(&game, map);
 	load_tiles(&game);
 	game.collect_amount = 0;
-	game.collect = malloc(sizeof(t_collectible) *
-		get_amount_tile(&game, 'C'));
+	game.collect = malloc(
+			sizeof(t_collectible) * get_amount_tile(&game, 'C'));
 	if (!game.collect)
 	{
 		write(2, "Error\nNo memory for collectibles\n", 34);

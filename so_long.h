@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:34:40 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 10:42:33 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:27:02 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_player
 	int			y;
 }		t_player;
 
-typedef struct	s_collectible
+typedef struct s_collectible
 {
 	int			x;
 	int			y;
@@ -62,6 +62,7 @@ void	map_validations(char **map);
 // object_validations.c
 void	object_validations(char **map);
 // map_methods.c
+int		get_amount_tile(t_game *game, char tile);
 char	**get_map(char *map_arg);
 void	print_map(char **map);
 // route_validation.c
@@ -71,7 +72,6 @@ void	load_tiles(t_game *game);
 // load_game.c
 void	start_game(char **map);
 // player_movements.c
-int		get_amount_tile(t_game *game, char tile);
 void	input_hook(mlx_key_data_t keydata, void *param);
 // exit_game.c
 void	exit_game(void *param);

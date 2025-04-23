@@ -6,11 +6,35 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:17:47 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 17:17:52 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:28:32 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	get_amount_tile(t_game *game, char tile)
+{
+	int		row;
+	int		column;
+	int		amount;
+	char	**map;
+
+	map = game->map;
+	row = 0;
+	amount = 0;
+	while (map[row])
+	{
+		column = 0;
+		while (map[row][column])
+		{
+			if (map[row][column] == tile)
+				amount++;
+			column++;
+		}
+		row++;
+	}
+	return (amount);
+}
 
 static int	count_rows(char *map_arg)
 {
@@ -33,14 +57,28 @@ static int	count_rows(char *map_arg)
 	return (count);
 }
 
-char	**get_map(char *map_arg)
+static void	line_read(int fd, char *line, char **map)
 {
-	char	*line;
-	char	**map;
-	int		fd;
 	int		count;
 
 	count = 0;
+	while (line)
+	{
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
+		map[count] = line;
+		count++;
+		line = get_next_line(fd);
+	}
+	map[count] = NULL;
+}
+
+char	**get_map(char *map_arg)
+{
+	char	**map;
+	char	*line;
+	int		fd;
+
 	map = malloc(sizeof(char *) * (count_rows(map_arg) + 1));
 	if (!map)
 		return (NULL);
@@ -57,15 +95,7 @@ char	**get_map(char *map_arg)
 		close(fd);
 		return (NULL);
 	}
-	while (line)
-	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		map[count] = line;
-		count++;
-		line = get_next_line(fd);
-	}
-	map[count] = NULL;
+	line_read(fd, line, map);
 	close(fd);
 	return (map);
 }

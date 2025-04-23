@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:36:59 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/19 13:56:55 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:36:01 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 		write(2, "Error\nFailed to load map.\n", 26);
 		exit(EXIT_FAILURE);
 	}
-	print_map(map);
 	map_validations(map);
 	object_validations(map);
 	route_validation(map);

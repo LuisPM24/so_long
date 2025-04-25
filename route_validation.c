@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:46:59 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/17 11:52:57 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:55:43 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,50 +40,23 @@ static char	**flood_fill_map(char **map)
 	while (map[count])
 	{
 		map_copy[count] = ft_strdup(map[count]);
+		if (!map_copy[count])
+		{
+			free_map(map_copy);
+			return (NULL);
+		}
 		count++;
 	}
 	map_copy[count] = NULL;
 	return (map_copy);
 }
 
-int	*get_player_position(char **map)
+static int	do_flood_fill(char **map_cpy, int *player_pos)
 {
-	int	*player_pos;
 	int	row;
 	int	column;
 
-	player_pos = malloc(2 * sizeof(int));
-	if (!player_pos)
-		return (NULL);
 	row = 0;
-	while (map[row])
-	{
-		column = 0;
-		while (map[row][column])
-		{
-			if (map[row][column] == 'P')
-			{
-				player_pos[0] = row;
-				player_pos[1] = column;
-				return (player_pos);
-			}
-			column++;
-		}
-		row++;
-	}
-	return (NULL);
-}
-
-static int	verify_route(char **map)
-{
-	int		row;
-	int		column;
-	int		*player_pos;
-	char	**map_cpy;
-
-	row = 0;
-	map_cpy = flood_fill_map(map);
-	player_pos = get_player_position(map_cpy);
 	flood_fill(map_cpy, player_pos[0], player_pos[1]);
 	while (map_cpy[row])
 	{
@@ -91,7 +64,11 @@ static int	verify_route(char **map)
 		while (map_cpy[row][column])
 		{
 			if (map_cpy[row][column] == 'C' || map_cpy[row][column] == 'E')
+			{
+				free(player_pos);
+				free_map(map_cpy);
 				return (0);
+			}
 			column++;
 		}
 		row++;
@@ -99,11 +76,33 @@ static int	verify_route(char **map)
 	return (1);
 }
 
+static int	verify_route(char **map)
+{
+	int		*player_pos;
+	char	**map_cpy;
+
+	map_cpy = flood_fill_map(map);
+	if (!map_cpy)
+		return (0);
+	player_pos = get_player_position(map_cpy);
+	if (!player_pos)
+	{
+		free_map(map_cpy);
+		return (0);
+	}
+	if (!do_flood_fill(map_cpy, player_pos))
+		return (0);
+	free(player_pos);
+	free(map_cpy);
+	return (1);
+}
+
 void	route_validation(char **map)
 {
 	if (!verify_route(map))
 	{
-		write(2, "Error\nThere is not a valid route.", 33);
+		write(2, "Error\nThere is not a valid route.\n", 34);
+		free_map(map);
 		exit (EXIT_FAILURE);
 	}
 }

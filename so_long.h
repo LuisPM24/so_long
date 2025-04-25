@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:34:40 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 19:27:02 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:59:47 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_game
 }		t_game;
 
 // map_validations.c
+int		*get_player_position(char **map);
 void	map_validations(char **map);
 // object_validations.c
 void	object_validations(char **map);
@@ -65,6 +66,7 @@ void	object_validations(char **map);
 int		get_amount_tile(t_game *game, char tile);
 char	**get_map(char *map_arg);
 void	print_map(char **map);
+void	free_map(char **map);
 // route_validation.c
 void	route_validation(char **map);
 // charge_textures.c

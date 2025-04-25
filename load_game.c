@@ -6,7 +6,7 @@
 /*   By: lpalomin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:08:18 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 17:54:07 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:55:45 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_game(t_game *game, char **map)
 	{
 		write(2, "Error\n", 6);
 		write(2, "It was impossible to open the game\n", 36);
+		exit_game(game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -111,6 +112,7 @@ void	start_game(char **map)
 	if (!game.collect)
 	{
 		write(2, "Error\nNo memory for collectibles\n", 34);
+		exit_game(&game);
 		exit(EXIT_FAILURE);
 	}
 	draw_map(&game);

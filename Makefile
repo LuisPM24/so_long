@@ -6,7 +6,7 @@
 #    By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:24:08 by lpalomin          #+#    #+#              #
-#    Updated: 2025/04/21 19:23:59 by lpalomin         ###   ########.fr        #
+#    Updated: 2025/04/25 17:17:47 by lpalomin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 
-# MLX_DIR = /sgoinfre/shared/MLX42
-MLX_DIR = $(HOME)/sgoinfre/MLX42
+MLX_DIR = /sgoinfre/shared/MLX42
+# MLX_DIR = $(HOME)/sgoinfre/MLX42
 MLX_INC = -I$(MLX_DIR)/include
 MLX_LIB = -L$(MLX_DIR)/build -lmlx42 -lglfw -ldl -lm -lX11 -pthread
 

@@ -6,11 +6,56 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:53:24 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/23 17:10:18 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:45:17 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	*get_player_position(char **map)
+{
+	int	*player_pos;
+	int	row;
+	int	column;
+
+	player_pos = malloc(2 * sizeof(int));
+	if (!player_pos)
+		return (NULL);
+	row = 0;
+	while (map[row])
+	{
+		column = 0;
+		while (map[row][column])
+		{
+			if (map[row][column] == 'P')
+			{
+				player_pos[0] = row;
+				player_pos[1] = column;
+				return (player_pos);
+			}
+			column++;
+		}
+		row++;
+	}
+	free(player_pos);
+	return (NULL);
+}
+
+void	free_map(char **map)
+{
+	int	count;
+
+	count = 0;
+	if (map)
+	{
+		while (map[count])
+		{
+			free(map[count]);
+			count++;
+		}
+		free(map);
+	}
+}
 
 static int	is_rectangular(char **map)
 {
@@ -66,12 +111,14 @@ void	map_validations(char **map)
 {
 	if (!is_rectangular(map))
 	{
-		write(2, "Error\nThe map is not rectangular.", 33);
+		write(2, "Error\nThe map is not rectangular.\n", 34);
+		free_map(map);
 		exit (EXIT_FAILURE);
 	}
 	else if (!is_closed(map))
 	{
-		write(2, "Error\nThe map borders are not closed.", 37);
+		write(2, "Error\nThe map borders are not closed.\n", 38);
+		free_map(map);
 		exit (EXIT_FAILURE);
 	}
 }

@@ -78,6 +78,7 @@ static int	do_flood_fill(char **map_cpy, int *player_pos)
 
 static int	verify_route(char **map)
 {
+	int		valid;
 	int		*player_pos;
 	char	**map_cpy;
 
@@ -90,11 +91,10 @@ static int	verify_route(char **map)
 		free_map(map_cpy);
 		return (0);
 	}
-	if (!do_flood_fill(map_cpy, player_pos))
-		return (0);
+	valid = do_flood_fill(map_cpy, player_pos);
 	free(player_pos);
-	free(map_cpy);
-	return (1);
+	free_map(map_cpy);
+	return (valid);
 }
 
 void	route_validation(char **map)

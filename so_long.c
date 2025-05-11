@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:36:59 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/25 17:55:10 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/05/11 10:36:17 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,12 @@ int	main(int argc, char **argv)
 	start_game(map);
 	return (0);
 }
+
+/*int	main(void)
+{
+	mlx_t	*mlx = mlx_init(200, 200, "Test", false);
+	if (!mlx)
+		return (EXIT_FAILURE);
+	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
+}*/

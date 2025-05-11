@@ -6,7 +6,7 @@
 /*   By: lpalomin <lpalomin@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:46:59 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/04/25 18:55:43 by lpalomin         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:10:00 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,7 @@ static int	do_flood_fill(char **map_cpy, int *player_pos)
 		while (map_cpy[row][column])
 		{
 			if (map_cpy[row][column] == 'C' || map_cpy[row][column] == 'E')
-			{
-				free(player_pos);
-				free_map(map_cpy);
 				return (0);
-			}
 			column++;
 		}
 		row++;
